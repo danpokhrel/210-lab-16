@@ -14,6 +14,11 @@ private:
     int green;
     int blue;
 public:
+    // Constructors
+    Color() {red = 0; green = 0; blue = 0;} // default
+    Color(int val) {red = val; green = val; blue = val;} // partial
+    Color(int r, int g, int b) {red = r; green = g; blue = b;} // full parameter
+
     // Getters and Setters
     int getRed() const {return red;}
     void setRed(int r) {red = r;}
@@ -36,16 +41,14 @@ int main(){
 
     // Genereate Data
     for (int i = 0; i < COUNT; i++){
-        Color tmp;
-        tmp.setRed(rand()%COLOR_MAX);
-        tmp.setGreen(rand()%COLOR_MAX);
-        tmp.setBlue(rand()%COLOR_MAX);
+        Color tmp = Color(rand()%COLOR_MAX, rand()%COLOR_MAX, rand()%COLOR_MAX); // Generate random colors
         colors.push_back(tmp);
     }
-
-    cout << "Outputing Color Values:\n";
+    colors.push_back(Color()); // black
+    colors.push_back(Color(COLOR_MAX)); // white
 
     // Print Data
+    cout << "Outputing Color Values:\n";
     for (Color color : colors){
         color.print();
     }
